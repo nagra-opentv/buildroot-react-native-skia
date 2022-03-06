@@ -1,0 +1,7 @@
+config BR2_PACKAGE_NOPOLL
+	bool "nopoll"
+	select BR2_PACKAGE_OPENSSL
+	help
+	    noPoll is a OpenSource WebSocket implementation (RFC 6455), written in ansi C,
+            that allows building pure WebSocket solutions or to provide WebSocket support
+            to existing TCP oriented applications

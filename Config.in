@@ -1,0 +1,8 @@
+# Include all package configuration snippets from the overlay.
+source "$BR2_EXTERNAL_RNS_PATH/package/chromium_depot_tools/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/eglinfo/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/javascriptcore/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/nopoll/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/react-native-skia/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/react-native-skia-samples/Config.in"
+source "$BR2_EXTERNAL_RNS_PATH/package/wpebackend-rdk/Config.in"

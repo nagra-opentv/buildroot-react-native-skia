@@ -1,0 +1,7 @@
+config BR2_PACKAGE_JAVASCRIPTCORE_WPE
+	bool "Javascriptcore WPE"
+	select BR2_PACKAGE_HAS_LIBEGL_WAYLAND
+	help
+	  A workaround to build WPE in JSC only mode when we are not building WPE webkit with wayland
+
+

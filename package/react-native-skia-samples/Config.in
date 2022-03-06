@@ -1,0 +1,7 @@
+config BR2_PACKAGE_REACT_NATIVE_SKIA_SAMPLES
+	bool "Sample App Bundles"
+	default y
+	depends on BR2_PACKAGE_REACT_NATIVE_SKIA
+	help
+	  React Native
+	  https://reactnative.dev/

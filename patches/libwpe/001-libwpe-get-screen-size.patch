@@ -1,0 +1,35 @@
+--- a/src/renderer-backend-egl.c	2022-01-21 18:30:00.639993697 +0530
++++ b/src/renderer-backend-egl.c	2022-01-24 14:51:54.820051165 +0530
+@@ -60,6 +60,12 @@
+     free(backend);
+ }
+ 
++int8_t
++wpe_renderer_backend_egl_get_screen_size(struct wpe_renderer_backend_egl *backend, uint32_t* width, uint32_t* height)
++{
++    return backend->base.interface->get_screen_size(backend->base.interface_data, width, height);
++}
++
+ EGLNativeDisplayType
+ wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl* backend)
+ {
+--- a/include/wpe/renderer-backend-egl.h	2021-12-21 22:51:48.000000000 +0530
++++ b/include/wpe/renderer-backend-egl.h	2022-01-24 14:55:39.761166618 +0530
+@@ -58,6 +58,7 @@
+     void* (*create)(int);
+     void (*destroy)(void*);
+ 
+     EGLNativeDisplayType (*get_native_display)(void*);
++    int8_t (*get_screen_size) (void*, uint32_t*, uint32_t*);
+     uint32_t (*get_platform)(void*);
+ 
+@@ -123,6 +124,10 @@
+ wpe_renderer_backend_egl_destroy(struct wpe_renderer_backend_egl*);
+ 
+ WPE_EXPORT
++int8_t
++wpe_renderer_backend_egl_get_screen_size(struct wpe_renderer_backend_egl*, uint32_t*, uint32_t*);
++
++WPE_EXPORT
+ EGLNativeDisplayType
+ wpe_renderer_backend_egl_get_native_display(struct wpe_renderer_backend_egl*);

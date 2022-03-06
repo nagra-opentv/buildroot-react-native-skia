@@ -1,0 +1,107 @@
+diff --git a/.gclient b/.gclient
+new file mode 100644
+index 0000000..43014e6
+--- /dev/null
++++ b/.gclient
+@@ -0,0 +1,10 @@
++solutions = [
++  { "name"        : 'src',
++    "url"         : 'https://github.com/nagra-opentv/react-native-skia.git@main_otv',
++    "deps_file"   : 'DEPS',
++    "managed"     : False,
++    "custom_deps" : {
++    },
++    "custom_vars": {},
++  },
++]
+diff --git a/.gclient_entries b/.gclient_entries
+new file mode 100644
+index 0000000..0213bdc
+--- /dev/null
++++ b/.gclient_entries
+@@ -0,0 +1,13 @@
++entries = {
++  'src': 'https://github.com/nagra-opentv/react-native-skia.git@main_otv',
++  'src/buildtools/clang_format/script': 'https://chromium.googlesource.com/chromium/llvm-project/cfe/tools/clang-format.git@96636aa0e9f047f17447f2d45a094d0b59ed7917',
++  'src/buildtools/linux64:gn/gn/linux-amd64': 'https://chrome-infra-packages.appspot.com/gn/gn/linux-amd64@git_revision:7d7e8deea36d126397bda2cf924682504271f0e1',
++  'src/buildtools/third_party/libc++/trunk': 'https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx.git@d9040c75cfea5928c804ab7c235fed06a63f743a',
++  'src/buildtools/third_party/libc++abi/trunk': 'https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi.git@196ba1aaa8ac285d94f4ea8d9836390a45360533',
++  'src/folly': 'https://github.com/Kudo/folly.git@2b9b7144fdafcc7c78d09465449f1c3a72386ac5',
++  'src/react-native': 'https://github.com/Kudo/react-native.git@deb66012fe550d536420931e47f5573e798e048a',
++  'src/third_party/boringssl/src': 'https://boringssl.googlesource.com/boringssl.git@430a7423039682e4bbc7b522e3b57b2c8dca5e3b',
++  'src/third_party/double-conversion': 'https://github.com/google/double-conversion.git@v1.1.6',
++  'src/third_party/glog': 'https://github.com/google/glog.git@v0.3.5',
++  'src/third_party/skia': 'https://skia.googlesource.com/skia.git@chrome/m86',
++}
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
+index 6e219b3..643a545 100644
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
+@@ -399,6 +399,15 @@ config("compiler") {
+ 
+   # Linux-specific compiler flags setup.
+   # ------------------------------------
++
++   if (is_linux && is_clang) {
++    _rebased_linux_toolchain_root = getenv("GCC_TOOLCHAIN_PATH")
++    if(_rebased_linux_toolchain_root != "") {
++      # Let clang find the linker
++      ldflags += [ "--gcc-toolchain=$_rebased_linux_toolchain_root" ]
++    }
++  }
++
+   if ((is_posix || is_fuchsia) && use_lld) {
+     ldflags += [ "-fuse-ld=lld" ]
+     if (current_cpu == "arm64") {
+@@ -423,8 +432,8 @@ config("compiler") {
+         # https://groups.google.com/a/chromium.org/group/chromium-dev/browse_thread/thread/281527606915bb36
+         # Only apply this to the target linker, since the host
+         # linker might not be gold, but isn't used much anyway.
+-        "-Wl,--threads",
+-        "-Wl,--thread-count=4",
++        #"-Wl,--threads",
++        #"-Wl,--thread-count=4",
+       ]
+     }
+ 
+diff --git a/skia/BUILD.gn b/skia/BUILD.gn
+index 8d24f85..517d690 100644
+--- a/skia/BUILD.gn
++++ b/skia/BUILD.gn
+@@ -30,12 +30,13 @@ declare_args() {
+   # --use-vulkan=swiftshader and some tests which use swiftshader vulkan will
+   # not work.
+   enable_swiftshader_vulkan = true
++  enable_skia_wuffs_gif = true
+ }
+ 
+ skia_support_gpu = !is_ios
+ skia_support_pdf = false
+ skia_support_skottie = false
+-enable_skia_wuffs_gif = true
++#enable_skia_wuffs_gif = true
+ 
+ declare_args() {
+   skia_whitelist_serialized_typefaces = false
+@@ -85,7 +86,7 @@ config("skia_config") {
+     if (enable_skia_wuffs_gif) {
+       defines += [ "SK_HAS_WUFFS_LIBRARY" ]
+     } else {
+-      defines += [ "SK_USE_LIBGIFCODEC" ]
++      #defines += [ "SK_USE_LIBGIFCODEC" ]
+     }
+   }
+   if (enable_vulkan) {
+@@ -383,9 +384,9 @@ component("skia") {
+       deps += [ "//third_party/wuffs" ]
+       sources += [ "//third_party/skia/codec/SkWuffsCodec.cpp" ]
+     } else {
+-      sources += rebase_path(libgifcodec_sources + libgifcodec_public,
+-                             ".",
+-                             "//third_party/libgifcodec")
++      #sources += rebase_path(libgifcodec_sources + libgifcodec_public,
++      #                       ".",
++      #                       "//third_party/libgifcodec")
+     }
+   }
+ 

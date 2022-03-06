@@ -1,0 +1,63 @@
+--- a/build/secondary/folly/BUILD.gn
++++ b/build/secondary/folly/BUILD.gn
+@@ -37,6 +37,7 @@
+     "folly/portability/SysUio.cpp",
+ 
+     "folly/portability/Malloc.cpp",
++    "folly/portability/OpenSSL.cpp",
+ 
+     "folly/synchronization/ParkingLot.cpp",
+ 
+@@ -196,9 +197,9 @@
+     "//third_party/double-conversion:double-conversion",
+     "//third_party/boost:headers_only",
+     "//third_party/libevent",
+-    "//third_party/boringssl",
+   ]
+ 
++  configs += ["//third_party/libssl:libssl_from_pkgconfig"]
+   configs -= [ "//build/config/compiler:no_exceptions" ]
+   configs += [ "//build/config/compiler:exceptions" ]
+   configs -= [ "//build/config/compiler:no_rtti" ]
+@@ -237,9 +238,8 @@
+     "//third_party/double-conversion:double-conversion",
+     "//third_party/boost:headers_only",
+     "//third_party/libevent",
+-    "//third_party/boringssl",
+   ]
+-
++  configs += ["//third_party/libssl:libssl_from_pkgconfig"]
+   configs -= [ "//build/config/compiler:no_exceptions" ]
+   configs += [ "//build/config/compiler:exceptions" ]
+   configs -= [ "//build/config/compiler:no_rtti" ]
+diff -crB --new-file a/build/secondary/third_party/libssl/BUILD.gn b/build/secondary/third_party/libssl/BUILD.gn
+*** a/build/secondary/third_party/libssl/BUILD.gn	
+--- b/build/secondary/third_party/libssl/BUILD.gn	
+***************
+*** 0 ****
+--- 1,25 ----
++ # Copyright (C) 1994-2021 OpenTV, Inc. and Nagravision S.A.
++ # This source code is licensed under the MIT license found in the
++ # LICENSE file in the root directory of this source tree.
++ 
++  
++ 
++ declare_args() {
++   use_system_libssl = true
++ }
++ 
++  
++ 
++ if (use_system_libssl) {
++   import("//build/config/linux/pkg_config.gni")
++   pkg_config("libssl_from_pkgconfig") {
++     defines = [ "SSL_ENABLED" ]
++     visibility = [ "*" ]
++     packages = [ "openssl" ]
++ 
++  
++ 
++   }
++ } else {
++   print("[ ERROR ] Building ssl from Source is not supported yet. Please set use_system_libssl=true while configuring")
++ }

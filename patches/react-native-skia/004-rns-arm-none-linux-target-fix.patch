@@ -1,0 +1,24 @@
+--- a/build/toolchain/linux/BUILD.gn	2022-01-25 14:33:04.000000000 +0530
++++ b/build/toolchain/linux/BUILD.gn	2022-02-05 11:57:49.967897756 +0530
+@@ -14,7 +14,7 @@
+ }
+ 
+ clang_toolchain("clang_arm") {
+-  toolprefix = "arm-linux-gnueabihf-"
++  toolprefix = "arm-none-linux-gnueabihf-"
+   toolchain_args = {
+     current_cpu = "arm"
+     current_os = "linux"
+--- a/build/config/compiler/BUILD.gn	2022-02-05 11:36:30.490001475 +0530
++++ b/build/config/compiler//BUILD.gn	2022-02-05 11:59:49.819399494 +0530
+@@ -756,8 +756,8 @@
+       }
+     } else if (current_cpu == "arm") {
+       if (is_clang && !is_android && !is_nacl) {
+-        cflags += [ "--target=arm-linux-gnueabihf" ]
+-        ldflags += [ "--target=arm-linux-gnueabihf" ]
++        cflags += [ "--target=arm-none-linux-gnueabihf" ]
++        ldflags += [ "--target=arm-none-linux-gnueabihf" ]
+       }
+       if (!is_nacl) {
+         cflags += [

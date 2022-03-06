@@ -1,0 +1,4 @@
+config BR2_PACKAGE_CHROMIUM_DEPOT_TOOLS
+	bool "Chromium Depot Tools"
+	help
+	  Provides chromium depot tools

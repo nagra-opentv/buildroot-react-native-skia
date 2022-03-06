@@ -1,0 +1,61 @@
+--- a/Source/JavaScriptCore/PlatformWPE.cmake	2018-11-22 01:59:02.000000000 +0530
++++ b/Source/JavaScriptCore/PlatformWPE.cmake	2022-01-19 19:12:18.664752621 +0530
+@@ -1,4 +1,5 @@
+ include(GLib.cmake)
++set(JavaScriptCore_OUTPUT_NAME javascriptcorewpe-${WPE_API_VERSION})
+ 
+ list(APPEND JavaScriptCore_LIBRARIES
+     ${GLIB_LIBRARIES}
+@@ -28,6 +29,23 @@
+     inspector/remote/glib/RemoteInspectorUtils.h
+ )
+ 
++configure_file(javascriptcorewpe.pc.in ${CMAKE_BINARY_DIR}/Source/JavaScriptCore/javascriptcorewpe-${WPE_API_VERSION}.pc @ONLY)
++install(FILES "${CMAKE_BINARY_DIR}/Source/JavaScriptCore/javascriptcorewpe-${WPE_API_VERSION}.pc"
++        DESTINATION "${LIB_INSTALL_DIR}/pkgconfig"
++)
++
++install(FILES API/JavaScript.h
++              API/JSBase.h
++              API/JSContextRef.h
++              API/JSObjectRef.h
++              API/JSStringRef.h
++              API/JSTypedArray.h
++              API/JSValueRef.h
++              API/WebKitAvailability.h
++    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/wpe-webkit-${WPE_API_VERSION}/JavaScriptCore"
++    COMPONENT "Development"
++)
++
+ install(FILES ${JavaScriptCore_INSTALLED_HEADERS}
+     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/wpe-webkit-${WPE_API_VERSION}/jsc"
+     COMPONENT "Development"
+--- a/dev/null	2022-01-19 09:22:38.167999986 +0530
++++ b/Source/JavaScriptCore/javascriptcorewpe.pc.in	2022-01-13 19:58:37.000000000 +0530
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=@LIB_INSTALL_DIR@
++includedir=${prefix}/include
++
++Name: JavaScriptCoreWPE
++Description: WPE version of the JavaScriptCore engine
++Version: @PROJECT_VERSION@
++Requires: glib-2.0 gobject-2.0
++Libs: -L${libdir} -ljavascriptcorewpe-@WPE_API_VERSION@
++Cflags: -I${includedir}/wpe-webkit-@WPE_API_VERSION@
+--- a/Source/cmake/OptionsWPE.cmake	2022-01-19 19:22:18.193374521 +0530
++++ b/Source/cmake/OptionsWPE.cmake	2022-01-19 19:26:59.230192870 +0530
+@@ -53,6 +53,12 @@
+ WEBKIT_OPTION_DEFINE(USE_MINIBROWSER_BACKEND_DEFAULT "Whether to use default WPE backend for MiniBrowser." PRIVATE OFF)
+ WEBKIT_OPTION_DEFINE(USE_MINIBROWSER_BACKEND_FDO "Whether to use FDO backend for MiniBrowser." PRIVATE OFF)
+ 
++# Option specific to WPE port. When we want to build Javascriptcore as dynamic library
++WEBKIT_OPTION_DEFINE(ENABLE_STATIC_JSC "Whether to build JavaScriptCore as a static library." PUBLIC OFF)
++if (NOT ENABLE_STATIC_JSC AND NOT WIN32)
++    set(JavaScriptCore_LIBRARY_TYPE SHARED)
++endif ()
++
+ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+     WEBKIT_OPTION_DEFAULT_PORT_VALUE(ENABLE_MEMORY_SAMPLER PRIVATE ON)
+     WEBKIT_OPTION_DEFAULT_PORT_VALUE(ENABLE_RESOURCE_USAGE PRIVATE ON)
