@@ -26,7 +26,9 @@ define REACT_NATIVE_SKIA_SAMPLES_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/opt/rns-samples/
 	(echo "Installing Pre-bundled React Native Skia Samples Apps..." ; \
 	rsync --recursive $(@D)/simpleView $(TARGET_DIR)/opt/rns-samples/; \
-	rsync --recursive $(@D)/simpleViewTimer $(TARGET_DIR)/opt/rns-samples/;)
+	rsync --recursive $(@D)/simpleTimer $(TARGET_DIR)/opt/rns-samples/; \
+	rsync --recursive $(@D)/simpleNavigation $(TARGET_DIR)/opt/rns-samples/; \
+	rsync --recursive $(@D)/simpleDemoScroll $(TARGET_DIR)/opt/rns-samples/;)
 endef	
 
 $(eval $(generic-package))
