@@ -4,7 +4,7 @@
 #
 #############################################################
 
-REACT_NATIVE_SKIA_VERSION = 6268706b30e55a62d5079256c125108c56b9dae5 
+REACT_NATIVE_SKIA_VERSION = b2ae62bd52e2b81a69e83b1165c54b57ef359c9c
 REACT_NATIVE_SKIA_SITE = $(call github,nagra-opentv,react-native-skia,$(REACT_NATIVE_SKIA_VERSION))
 
 RNS_TP_GN_VER=git_revision:7d7e8deea36d126397bda2cf924682504271f0e1
@@ -115,31 +115,23 @@ endif
 REACT_NATIVE_SKIA_GN_DEFINES += \
 	gl_use_glx=false \
 	gl_display_backend="libwpe" \
+	rns_enable_partial_updates = true \
 	wpe_interface_version="1.0"
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGLES),y)
 
-  ifeq ($(BR2_PACKAGE_GLES_EGL),y)
-    REACT_NATIVE_SKIA_DEPENDENCIES += gles_egl 
-  else ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
+  ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
     REACT_NATIVE_SKIA_DEPENDENCIES += rpi-userland
   else ifeq ($(BR2_PACKAGE_MESA3D_OPENGL_ES),y)
     REACT_NATIVE_SKIA_DEPENDENCIES += mesa3d 
   endif
 
   REACT_NATIVE_SKIA_GN_DEFINES += \
-    rns_enable_partial_updates = false \
     gl_use_opengl_es=true
 else
   REACT_NATIVE_SKIA_GN_DEFINES += \
-    rns_enable_partial_updates = true \
     gl_has_gpu=false \
     gl_use_opengl_es=false
-endif
-
-##Select platform
-ifeq ($(BR2_OTV_PLATFORM_VENDOR),"PLATFORM_BRCM")
-	REACT_NATIVE_SKIA_EXTRA_FLAGS += "EGL_PLATFORM_BRCM=1"
 endif
 
 REACT_NATIVE_SKIA_EXTRA_FLAGS += "CA_CERTIFICATE=\"/etc/x509/CAfile.pem"\"
@@ -152,11 +144,7 @@ REACT_NATIVE_SKIA_GN_DEFINES += is_debug=false
 # Enable component build to generate shared libraries
 REACT_NATIVE_SKIA_GN_DEFINES += is_component_build=true
 # Debug or Release
-ifeq ($(BR2_OTV_BUILD_TYPE_RELEASE),y)
-REACT_NATIVE_SKIA_BUILD_TYPE = Release
-else
 REACT_NATIVE_SKIA_BUILD_TYPE = Debug
-endif
 
 REACT_NATIVE_SKIA_BUILD_OUTPUT_DIR = out/$(REACT_NATIVE_SKIA_BUILD_TYPE)
 REACT_NATIVE_SKIA_TARGET_NAME = ReactSkiaApp
