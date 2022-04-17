@@ -1,0 +1,12 @@
+--- a/rns_shell/compositor/Compositor.cpp	2022-04-01 14:29:42.000000000 +0530
++++ b/rns_shell/compositor/Compositor.cpp	2022-04-17 16:09:32.713719614 +0530
+@@ -53,7 +53,8 @@
+         attributes_.needsResize = !viewportSize.isEmpty();
+     }
+ #if USE(RNS_SHELL_PARTIAL_UPDATES)
+-    supportPartialUpdate_ = windowContext_->hasSwapBuffersWithDamage() || windowContext_->hasBufferCopy();
++    //supportPartialUpdate_ = windowContext_->hasSwapBuffersWithDamage() || windowContext_->hasBufferCopy();
++    supportPartialUpdate_ = false; // RPI will need BUFFER AGE handling for partial update. Disable this feature for now.
+     RNS_LOG_DEBUG("Support for Swapbuffer with damage rect : " << windowContext_->hasSwapBuffersWithDamage() <<
+                   " Support for Copy buffer : " <<  windowContext_->hasBufferCopy());
+ #endif
