@@ -50,7 +50,7 @@ export XDG_RUNTIME_DIR=/tmp/wayland/
 ReactSkiaApp /opt/rns-samples/simpleView/SampleViewApp.bundle
 ReactSkiaApp /opt/rns-samples/simpleTimer/SampleViewApp.bundle
 ReactSkiaApp /opt/rns-samples/simpleNavigation/SampleViewApp.bundle
-ReactSkiaApp /opt/rns-samples/simplePoster/SampleViewApp.bundle
+ReactSkiaApp /opt/rns-samples/simpleDemoScroll/SampleViewApp.bundle
 ```
 To build more test apps you can refer to [Build Code Section from RNS](https://github.com/react-native-skia/react-native-skia#build-instructions)
 
@@ -59,6 +59,10 @@ Included Configurations
 -----------------------
 - `raspberrypi3_rns_vc4_wayland_defconfig` : Produces an 384MB image file at
   `output/images/sdcard.img` for the Raspberry Pi3 with Mesa3d-VC4 and Wayland. The image
+  should be written raw to the sdcard, using a tool like `dd` or
+  [etcher](https://etcher.io)
+- `raspberrypi3_rns_vc4_x11_defconfig` : Produces an 384MB image file at
+  `output/images/sdcard.img` for the Raspberry Pi3 with Mesa3d-VC4 and X11. The image
   should be written raw to the sdcard, using a tool like `dd` or
   [etcher](https://etcher.io)
 - `raspberrypi3_rns_defconfig`: <font color="red">[Has GPU memory issues] </font> Produces an 384MB image file at
@@ -74,3 +78,4 @@ Documentation
 Known Issues
 ------------
 - On RPI-3 with raspberrypi3_rns_defconfig configuration we are getting `getGLError 0x505` for bigger sample apps, even when GPU memory confugured to 512 MB.
+- On RPI-3 with Mesa3d-VC4 configuration we do not have any OpenGL Partial update extensions, which means every new frame we will redraw entire screen contents.

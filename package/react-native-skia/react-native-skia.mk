@@ -4,7 +4,7 @@
 #
 #############################################################
 
-REACT_NATIVE_SKIA_VERSION = b2ae62bd52e2b81a69e83b1165c54b57ef359c9c
+REACT_NATIVE_SKIA_VERSION = 910b1dd061679a887d0cf170ce2e06a91966b9a3
 REACT_NATIVE_SKIA_SITE = $(call github,nagra-opentv,react-native-skia,$(REACT_NATIVE_SKIA_VERSION))
 
 RNS_TP_GN_VER=git_revision:7d7e8deea36d126397bda2cf924682504271f0e1
@@ -32,7 +32,7 @@ REACT_NATIVE_SKIA_EXTRA_DOWNLOADS += \
 
 REACT_NATIVE_SKIA_INSTALL_STAGING = YES
 
-REACT_NATIVE_SKIA_DEPENDENCIES = chromium_depot_tools boost expat libpng jpeg-turbo icu webp freetype libwpe nopoll harfbuzz wpewebkit wpebackend-rdk
+REACT_NATIVE_SKIA_DEPENDENCIES = chromium_depot_tools boost expat libpng jpeg-turbo icu webp freetype nopoll harfbuzz wpewebkit
 
 ##Select Architecture
 ifeq ($(BR2_arm),y)
@@ -69,6 +69,11 @@ REACT_NATIVE_SKIA_GN_DEFINES = \
 	clang_base_path="$(REACT_NATIVE_SKIA_CLANG_BASE_PATH)" \
 	use_lld=false \
 	use_gold=false 
+
+ifeq ($(BR2_SOFT_FLOAT), y)
+REACT_NATIVE_SKIA_GN_DEFINES += \
+  mips_float_abi="soft"
+endif
 
 # Configurations
 REACT_NATIVE_SKIA_GN_DEFINES += \
@@ -114,9 +119,18 @@ endif
 
 REACT_NATIVE_SKIA_GN_DEFINES += \
 	gl_use_glx=false \
+	rns_enable_partial_updates = true
+
+ifeq ($(BR2_PACKAGE_XORG7),y)
+REACT_NATIVE_SKIA_GN_DEFINES += \
+	gl_display_backend="x11"
+  REACT_NATIVE_SKIA_DEPENDENCIES += xserver_xorg-server
+else
+REACT_NATIVE_SKIA_GN_DEFINES += \
 	gl_display_backend="libwpe" \
-	rns_enable_partial_updates = true \
 	wpe_interface_version="1.0"
+  REACT_NATIVE_SKIA_DEPENDENCIES += libwpe wpebackend-rdk
+endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGLES),y)
 
