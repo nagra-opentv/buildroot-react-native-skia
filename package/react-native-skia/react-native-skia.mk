@@ -4,7 +4,7 @@
 #
 #############################################################
 
-REACT_NATIVE_SKIA_VERSION = 910b1dd061679a887d0cf170ce2e06a91966b9a3
+REACT_NATIVE_SKIA_VERSION = 4525f7232b4a1a6db6593711c3642729259f5006 
 REACT_NATIVE_SKIA_SITE = $(call github,nagra-opentv,react-native-skia,$(REACT_NATIVE_SKIA_VERSION))
 
 RNS_TP_GN_VER=git_revision:7d7e8deea36d126397bda2cf924682504271f0e1
@@ -119,6 +119,8 @@ endif
 
 REACT_NATIVE_SKIA_GN_DEFINES += \
 	gl_use_glx=false \
+  rns_enable_onscreen_keyboard = false \
+  rns_enable_key_throttling = true \
 	rns_enable_partial_updates = true
 
 ifeq ($(BR2_PACKAGE_XORG7),y)
