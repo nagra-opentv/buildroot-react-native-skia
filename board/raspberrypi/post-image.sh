@@ -36,6 +36,27 @@ __EOF__
 		gpu_mem="${arg:2}"
 		sed -e "/^${gpu_mem%=*}=/s,=.*,=${gpu_mem##*=}," -i "${BINARIES_DIR}/rpi-firmware/config.txt"
 		;;
+    --fix-alsa)
+    if ! grep -qE '^dtparam=audio' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'dtparam=audio=on' to config.txt."
+      cat << __EOF__ >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+
+# Fix ALSA
+dtparam=audio=on
+__EOF__
+    fi
+    ;;
+    --i2c)
+	  if ! grep -qE '^dtparam=i2c_arm=on' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+		echo "Adding 'i2c' functionality to config.txt."
+      cat << __EOF__ >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+
+# Enable i2c functionality
+dtparam=i2c_arm=on
+dtparam=i2c1=on
+__EOF__
+    fi
+    ;;
     --add-vc4-fkms-v3d-overlay)
 		if ! grep -qE '^dtoverlay=vc4-fkms-v3d' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
 			echo "Adding 'dtoverlay=vc4-fkms-v3d' to config.txt (Load VC4 driver with KMS, creates /dev/dri/card0)."
