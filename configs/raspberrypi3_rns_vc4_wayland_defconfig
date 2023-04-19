@@ -3,7 +3,7 @@ BR2_cortex_a53=y
 BR2_ARM_FPU_NEON_VFPV4=y
 BR2_CCACHE=y
 BR2_CCACHE_DIR="$(TOPDIR)/ccache/buildroot-ccache-$(BR2_ARCH)"
-BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RNS_PATH)/patches"
+BR2_GLOBAL_PATCH_DIR="$(BR2_EXTERNAL_RNS_PATH)/patches $(BR2_EXTERNAL_RNS_PATH)/board/raspberrypi3/patches"
 BR2_DL_DIR="/opt/workshop/external/foss_dl"
 
 BR2_TOOLCHAIN_BUILDROOT_CXX=y

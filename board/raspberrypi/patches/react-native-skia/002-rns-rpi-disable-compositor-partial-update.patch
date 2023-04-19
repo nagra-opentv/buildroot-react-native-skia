@@ -1,0 +1,11 @@
+--- a/rns_shell/common/WindowContext.cpp
++++ b/rns_shell/common/WindowContext.cpp
+@@ -25,7 +25,8 @@ WindowContext::~WindowContext() {}
+ bool WindowContext::supportsPartialUpdate() {
+     RNS_LOG_DEBUG("Support for Swapbuffer with damage rect : " << hasSwapBuffersWithDamage() <<
+                   " Support for Copy buffer : " <<  hasBufferCopy());
+-    return (hasSwapBuffersWithDamage() || hasBufferCopy());
++    //return (hasSwapBuffersWithDamage() || hasBufferCopy());
++    return false; // RPI will need BUFFER AGE handling for partial update. Disable this feature for now.
+ }
+ #endif/*RNS_SHELL_PARTIAL_UPDATES*/

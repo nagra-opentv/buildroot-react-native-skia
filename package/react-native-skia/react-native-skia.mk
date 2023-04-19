@@ -4,7 +4,7 @@
 #
 #############################################################
 
-REACT_NATIVE_SKIA_VERSION = 4525f7232b4a1a6db6593711c3642729259f5006 
+REACT_NATIVE_SKIA_VERSION = 5f050267d671cf20abb428ad9d8afa089c9c3cce
 REACT_NATIVE_SKIA_SITE = $(call github,nagra-opentv,react-native-skia,$(REACT_NATIVE_SKIA_VERSION))
 
 RNS_TP_GN_VER=git_revision:7d7e8deea36d126397bda2cf924682504271f0e1
@@ -15,7 +15,7 @@ RNS_TP_LIBCXXABI_VER=196ba1aaa8ac285d94f4ea8d9836390a45360533
 RNS_TP_DOUBLE_CONVERSION_VER=1.1.6
 RNS_TP_GLOG_VER=0.3.5
 RNS_TP_FOLLY_VER=2b9b7144fdafcc7c78d09465449f1c3a72386ac5
-RNS_TP_REACT_NATIVE_VER=797fbbde88c0224864a803292f20a06fafd7824e
+RNS_TP_REACT_NATIVE_VER=e794cea72fb8c0d810e1c6afb14e6677e5cef30b
 
 RNS_TP_LIBCXX_URL=https://chromium.googlesource.com/external/github.com/llvm/llvm-project
 
@@ -121,6 +121,7 @@ REACT_NATIVE_SKIA_GN_DEFINES += \
 	gl_use_glx=false \
   rns_enable_onscreen_keyboard = false \
   rns_enable_key_throttling = true \
+  rns_enable_buffer_age_partial_updates = false \
 	rns_enable_partial_updates = true
 
 ifeq ($(BR2_PACKAGE_XORG7),y)
@@ -163,7 +164,7 @@ REACT_NATIVE_SKIA_GN_DEFINES += is_component_build=true
 REACT_NATIVE_SKIA_BUILD_TYPE = Debug
 
 REACT_NATIVE_SKIA_BUILD_OUTPUT_DIR = out/$(REACT_NATIVE_SKIA_BUILD_TYPE)
-REACT_NATIVE_SKIA_TARGET_NAME = ReactSkiaApp
+REACT_NATIVE_SKIA_TARGET_NAME = ReactSkiaApp RnsPlatformPlugin
 
 # EXtract thirdparty package. We may not need clang-format file now if required then add following line without # in REACT_NATIVE_SKIA_GET_THIRDPARTY
 #PATH="$(PATH):$(CHROMIUM_DEPOT_TOOLS_BUILDDIR)" download_from_google_storage.py --no_resume --no_auth --bucket chromium-clang-format -s $(@D)/buildtools/linux64/clang-format.sha1; \
@@ -182,6 +183,27 @@ define REACT_NATIVE_SKIA_GET_THIRDPARTY
 endef
 REACT_NATIVE_SKIA_POST_EXTRACT_HOOKS += REACT_NATIVE_SKIA_GET_THIRDPARTY
 
+ifneq ($(BR2_PACKAGE_RNS_APPS_DIR),)
+define REACT_NATIVE_SKIA_APP_SYNC
+    (if test -z "$(BR2_PACKAGE_RNS_APPS_DIR)" ; then \
+      true ; \
+     else \
+      echo ">>> Syncing RN Applications !!!"; \
+      mkdir -p $(@D)/ReactSkia/RnApps/;\
+      rsync -ac $(BR2_PACKAGE_RNS_APPS_DIR)/RSkCodegenConf.json $(@D)/ReactSkia/RSkCodegenConf.json; \
+      rsync -ac $(BR2_PACKAGE_RNS_APPS_DIR)/ $(@D)/ReactSkia/RnApps/; \
+     fi);
+endef
+
+REACT_NATIVE_SKIA_PRE_CONFIGURE_HOOKS += REACT_NATIVE_SKIA_APP_SYNC
+endif
+
+define REACT_NATIVE_SKIA_GENERATE_BUILDGN
+    (echo ">>> Generate External BUILD.GN !!!"; \
+    python $(@D)/ReactSkia/scripts/buildgngen/RSkBuildGen.py $(@D)/out/Debug/gen/ $(@D)/ReactSkia/RSkCodegenConf.json $(@D);)
+endef
+REACT_NATIVE_SKIA_PRE_CONFIGURE_HOOKS += REACT_NATIVE_SKIA_GENERATE_BUILDGN
+
 # configure command
 define REACT_NATIVE_SKIA_CONFIGURE_CMDS
 	(cd $(@D)/; \
@@ -199,7 +221,7 @@ endef
 define REACT_NATIVE_SKIA_INSTALL_TARGET_CMDS
 	mkdir -p $(TARGET_DIR)/usr/bin/assets/__react-native/Libraries/NewAppScreen/components
 	(echo "Installing Third Party Libs..." ; \
-	install -Dm755 $(@D)/out/Debug/lib{boringssl,c++,glog,skia,double-conversion}.so $(TARGET_DIR)/usr/lib/; \
+	install -Dm755 $(@D)/out/Debug/lib{RnsPlatformPlugin,boringssl,c++,glog,skia,double-conversion}.so $(TARGET_DIR)/usr/lib/; \
 	echo "Installing ReactSkiaApp..." ; \
 	install -Dm755 $(@D)/out/Debug/ReactSkiaApp $(TARGET_DIR)/usr/bin/;)
 endef	

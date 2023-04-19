@@ -19,3 +19,10 @@ config BR2_PACKAGE_REACT_NATIVE_SKIA
 	help
 	  React Native
 	  https://reactnative.dev/
+
+config BR2_PACKAGE_RNS_APPS_DIR
+  string "Application and its configuration directory path"
+  depends on BR2_PACKAGE_REACT_NATIVE_SKIA
+  help
+    Specify the DIR path where RNS application and
+    RSkCodegenConf.json are present

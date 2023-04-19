@@ -1,0 +1,15 @@
+--- a/src/renderer-backend-egl.cpp	2021-03-30 13:39:03.000000000 +0530
++++ b/src/renderer-backend-egl.cpp	2022-02-05 21:18:31.658488038 +0530
+@@ -100,6 +100,12 @@
+         auto& backend = *reinterpret_cast<Backend*>(data);
+         return EGLNativeDisplayType(backend.display());
+     },
++    // get_screen_size
++    [](void* data, uint32_t *width,uint32_t *height) -> int8_t
++    {
++        fprintf(stderr, "Renderer Backend: !!!!!!!!!! Get Screen Size not implemented !!!!!!!!!!");
++        return -1;
++    },
+ };
+
+ struct wpe_renderer_backend_egl_target_interface fdo_renderer_backend_egl_target = {

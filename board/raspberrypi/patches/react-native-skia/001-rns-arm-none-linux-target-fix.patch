@@ -2,7 +2,7 @@
 +++ b/build/toolchain/linux/BUILD.gn	2022-02-05 11:57:49.967897756 +0530
 @@ -14,7 +14,7 @@
  }
- 
+
  clang_toolchain("clang_arm") {
 -  toolprefix = "arm-linux-gnueabihf-"
 +  toolprefix = "arm-none-linux-gnueabihf-"
