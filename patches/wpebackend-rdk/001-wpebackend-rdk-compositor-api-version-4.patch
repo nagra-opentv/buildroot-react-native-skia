@@ -1,0 +1,11 @@
+--- a/src/wayland/display.cpp	2022-02-09 11:57:19.000000000 +0530
++++ b/src/wayland/display.cpp	2023-04-09 11:07:27.909619624 +0530
+@@ -120,7 +120,7 @@
+         auto& interfaces = *static_cast<Display::Interfaces*>(data);
+
+         if (!std::strcmp(interface, "wl_compositor"))
+-            interfaces.compositor = static_cast<struct wl_compositor*>(wl_registry_bind(registry, name, &wl_compositor_interface, 1));
++            interfaces.compositor = static_cast<struct wl_compositor*>(wl_registry_bind(registry, name, &wl_compositor_interface, 4));
+
+ #ifdef BACKEND_BCM_NEXUS_WAYLAND
+         if (!std::strcmp(interface, "wl_nsc"))
