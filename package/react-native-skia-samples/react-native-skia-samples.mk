@@ -29,7 +29,6 @@ define REACT_NATIVE_SKIA_SAMPLES_INSTALL_TARGET_CMDS
 	rsync --recursive $(@D)/simpleTimer $(TARGET_DIR)/opt/rns-samples/; \
 	rsync --recursive $(@D)/simpleNavigation $(TARGET_DIR)/opt/rns-samples/; \
 	rsync --recursive $(@D)/simpleDemo1 $(TARGET_DIR)/opt/rns-samples/; \
-	rsync --recursive $(@D)/simpleDemoScroll $(TARGET_DIR)/opt/rns-samples/; \
 	rsync --recursive $(@D)/simplePoster $(TARGET_DIR)/opt/rns-samples/;)
 endef	
 
