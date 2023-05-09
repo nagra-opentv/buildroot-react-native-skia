@@ -1,0 +1,290 @@
+  [{
+     "imageFile" : "1.jpg",
+     "title" : "MOVIE-1",
+     "genre" : "Musical,Comedy",
+     "duration" : "1h 43m",
+     "year" : "2019",
+     "description" : 
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  },
+  {
+     "imageFile" : "2.jpg",
+     "title" : "MOVIE-2",
+     "genre" : "Comedy",
+     "duration" : "2h 01m",
+     "year" : "2017",
+     "description" : 
+   "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+  },
+  {
+     "imageFile" : "3.jpg",
+     "title" : "MOVIE-3",
+     "genre" : "Action",
+     "duration" : "2h 02m",
+     "year" : "2018",
+     "description" : 
+   "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+     "imageFile" : "4.jpg",
+     "title" : "MOVIE-4",
+     "genre" : "Adventure",
+     "duration" : "1h 58m",
+     "year" : "2019",
+     "description" : 
+   "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."
+  },
+  {
+     "imageFile" : "5.jpg",
+     "title" : "JMOVIE-5",
+     "genre" : "Crime,Drama",
+     "duration" : "2h 02m",
+     "year" : "2019",
+     "description" : 
+   "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source."
+  },
+  {
+     "imageFile" : "6.jpg",
+     "title" : "MOVIE-6",
+     "genre" : "Comedy",
+     "duration" : "1h 27m",
+     "year" : "2019",
+     "description" : 
+   "Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of -de Finibus Bonorum et Malorum- (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance."
+  },
+  {
+     "imageFile" : "7.jpg",
+     "title" : "MOVIE-7",
+     "genre" : "Action",
+     "duration" : "1h 25m",
+     "year" : "2019",
+     "description" : 
+   "The first line of Lorem Ipsum, -Lorem ipsum dolor sit amet..-, comes from a line in section 1.10.32."
+  },
+  {
+     "imageFile" : "8.jpg",
+     "title" : "MOVIE-8",
+     "genre" : "Action",
+     "duration" : "1h 29m",
+     "year" : "2019",
+     "description" : 
+   "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."
+  },
+  {
+     "imageFile" : "12.jpg",
+     "title" : "MOVIE-12",
+     "genre" : "Comedy",
+     "duration" : "1h 44m",
+     "year" : "2000",
+     "description" : 
+   "Sections 1.10.32 and 1.10.33 from -de Finibus Bonorum et Malorum- by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+  },
+  {
+     "imageFile" : "11.jpg",
+     "title" : "MOVIE-11",
+     "genre" : "Comedy",
+     "duration" : "1h 29m",
+     "year" : "2009",
+     "description" : 
+   "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+  },
+  {
+     "imageFile" : "16.jpg",
+     "title" : "MOVIE-16",
+     "genre" : "Comedy",
+     "duration" : "1h 45m",
+     "year" : "2012",
+     "description" : 
+   "The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+  },
+  {
+     "imageFile" : "21.jpg",
+     "title" : "MOVIE-21",
+     "genre" : "Comedy,Romance,Drama",
+     "duration" : "1h 28m",
+     "year" : "2008",
+     "description" : 
+   "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."
+  },
+  {
+     "imageFile" : "10.jpg",
+     "title" : "MOVIE-10",
+     "genre" : "Romance,Drama",
+     "duration" : "1h 43m",
+     "year" : "2004",
+     "description" : 
+   "Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+  },
+  {
+     "imageFile" : "9.jpg",
+     "title" : "MOVIE-9",
+     "genre" : "Musical",
+     "duration" : "1h 32m",
+     "year" : "1995",
+     "description" : 
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."
+  },
+  {
+     "imageFile" : "19.jpg",
+     "title" : "MOVIE-19",
+     "genre" : "Animation",
+     "duration" : "1h 32m",
+     "year" : "2017",
+     "description" : 
+   "If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text."
+  },
+  {
+     "imageFile" : "24.jpg",
+     "title" : "MOVIE-24",
+     "genre" : "Comedy,Adventure",
+     "duration" : "1h 23m",
+     "year" : "2019",
+     "description" : 
+   "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet."
+  },
+  {
+     "imageFile" : "13.jpg",
+     "title" : "MOVIE-13",
+     "genre" : "Comedy,Adventure",
+     "duration" : "1h 59m",
+     "year" : "2017",
+     "description" : 
+   "It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable."
+  },
+  {
+     "imageFile" : "15.jpg",
+     "title" : "MOVIE-15",
+     "genre" : "Action,Thriller",
+     "duration" : "2h 13m",
+     "year" : "2017",
+     "description" : 
+   "The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+     "imageFile" : "20.jpg",
+     "title" : "MOVIE-20",
+     "genre" : "0h 48m",
+     "duration" : "2015",
+     "year" : "",
+     "description" : 
+   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  },
+  {
+     "imageFile" : "23.jpg",
+     "title" : "MOVIE-23",
+     "genre" : "Romance,Drama",
+     "duration" : "1h 31m",
+     "year" : "2019",
+     "description" : 
+   "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+  },
+  {
+     "imageFile" : "14.jpg",
+     "title" : "MOVIE-14",
+     "genre" : "Action,Adventure",
+     "duration" : "1h 35m",
+     "year" : "2016",
+     "description" : 
+   "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  },
+  {
+     "imageFile" : "22.jpg",
+     "title" : "MOVIE-22",
+     "genre" : "Romance,Drama",
+     "duration" : "1h 47m",
+     "year" : "2010",
+     "description" : 
+   "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."
+  },
+  {
+     "imageFile" : "18.jpg",
+     "title" : "MOVIE-18",
+     "genre" : "Action,Thriller",
+     "duration" : "2h 13m",
+     "year" : "2003",
+     "description" : 
+   "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source."
+  },
+  {
+     "imageFile" : "17.jpg",
+     "title" : "MOVIE-17",
+     "genre" : "Thriller,Drama",
+     "duration" : "2h 28m",
+     "year" : "2006",
+     "description" : 
+   "Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of -de Finibus Bonorum et Malorum- (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance."
+  },
+  {
+     "imageFile" : "2.jpg",
+     "title" : "MOVIE-2",
+     "genre" : "Comedy",
+     "duration" : "2h 01m",
+     "year" : "2017",
+     "description" : 
+   "The first line of Lorem Ipsum, -Lorem ipsum dolor sit amet..-, comes from a line in section 1.10.32."
+  },
+  {
+     "imageFile" : "5.jpg",
+     "title" : "MOVIE-5",
+     "genre" : "Crime,Drama",
+     "duration" : "2h 02m",
+     "year" : "2019",
+     "description" : 
+   "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested."
+  },
+  {
+     "imageFile" : "8.jpg",
+     "title" : "MOVIE-8",
+     "genre" : "Action",
+     "duration" : "1h 29m",
+     "year" : "2019",
+     "description" : 
+   "Sections 1.10.32 and 1.10.33 from -de Finibus Bonorum et Malorum- by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+  },
+  {
+     "imageFile" : "12.jpg",
+     "title" : "MOVIE-12",
+     "genre" : "Comedy",
+     "duration" : "1h 44m",
+     "year" : "2000",
+     "description" : 
+   "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+  },
+  {
+     "imageFile" : "21.jpg",
+     "title" : "MOVIE-21",
+     "genre" : "Comedy,Romance,Drama",
+     "duration" : "1h 28m",
+     "year" : "2008",
+     "description" : 
+   "The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+  },
+  {
+     "imageFile" : "24.jpg",
+     "title" : "MOVIE-24",
+     "genre" : "Comedy,Adventure",
+     "duration" : "1h 23m",
+     "year" : "2019",
+     "description" : 
+   "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."
+  },
+  {
+     "imageFile" : "14.jpg",
+     "title" : "MOVIE-14",
+     "genre" : "Action,Adventure",
+     "duration" : "1h 35m",
+     "year" : "2016",
+     "description" : 
+   "Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+  },
+  {
+     "imageFile" : "16.jpg",
+     "title" : "MOVIE-16",
+     "genre" : "Comedy",
+     "duration" : "1h 45m",
+     "year" : "2012",
+     "description" : 
+   "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."
+  }]
+
+
